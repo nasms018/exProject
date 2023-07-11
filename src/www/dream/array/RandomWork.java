@@ -7,7 +7,14 @@ public class RandomWork {
 		boolean[][] visited = new boolean[ROOT][ROOT];
 		int curRow = ROOT / 2, curCol = ROOT / 2;
 		visited[curRow][curCol] = true;
-		//방문 걸어간 경로 출력
+		displayBoard(visited);
+	}
+
+	/**
+	 * 방문 경로 출력
+	 * @param visited
+	 */
+	private static void displayBoard(boolean[][] visited) {
 		for(boolean[] aRow: visited) {
 			for(boolean v:  aRow) {
 				if(v) {

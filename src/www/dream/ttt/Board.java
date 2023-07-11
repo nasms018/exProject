@@ -53,7 +53,35 @@ public class Board {
 		// --Cell아. 너는 Line의 담겼단다.
 	}
 
+	/**
+	 * 상황출력
+	 */
+	private void display() {
+		for (int row = 0; row < ROOT; row++) {
+			for (int col = 0; col < ROOT; col++) {
+				System.out.print(cells[row][col].돌그림줘());
+			}
+			System.out.println();
+		}
+		System.out.println("-----------------");
+	}
+
 	public static void main(String[] args) {
 		Board tttBoard = new Board();
+		Player user = new Player(StoneType.White);
+		Player com = new Player(StoneType.Black);
+		boolean isUserTurn = true; // 사용자의 턴
+		do {
+			if (isUserTurn) {
+
+			} else {
+
+			}
+			tttBoard.display();
+			isUserTurn = !isUserTurn; // 참이면 거짓으로 거짓이면 참으로 반전시킴//턴넘기기
+			
+		} while (true);
+
 	}
+
 }

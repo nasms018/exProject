@@ -1,7 +1,7 @@
 package www.dream.ttt;
 
 public enum StoneType {
-	Empty(' '), White('O'), Black('X');
+	Empty('.'), White('O'), Black('X');
 
 	private char displayChar;
 

@@ -2,6 +2,7 @@ package www.dream.ttt;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 public class Board {
 	/* 상수 정의 : private static final */
@@ -10,7 +11,8 @@ public class Board {
 	private List<Line> listLine = new ArrayList<>(); // lines는 잘안씀 listLinelinesList
 
 	/**
-	 * 생성자. counstructor 생성시에 처리하여야 할 기능들을 작성하는 영역 칸과 줄을 만들고 둘사이의 관계 정보까지 설정한다.
+	 * 생성자. counstructor 생성시에 처리하여야 할 기능들을 작성하는 영역 칸과 줄을 만들고 둘사이의 관계 정보까지 설정한다. 그리디
+	 * 알고리즘으로
 	 */
 	public Board() {
 		// Cell 반복적 만들기
@@ -66,20 +68,31 @@ public class Board {
 		System.out.println("-----------------");
 	}
 
+	public Cell getEmptyCell(int row, int col) {
+		if (row < 0 || row >= ROOT)
+			return null;
+		if (col < 0 || col >= ROOT)
+			return null;
+		if (cells[row][col].빈상태니())
+			return cells[row][col];
+		System.out.println("놓인 곳을 선택한 잘못");
+		return null;
+	}
+
 	public static void main(String[] args) {
 		Board tttBoard = new Board();
 		Player user = new Player(StoneType.White);
 		Player com = new Player(StoneType.Black);
-		boolean isUserTurn = true; // 사용자의 턴
+		Scanner input = new Scanner(System.in);
+		boolean isUserTurn = false; // 컴퓨터의 턴
 		do {
 			if (isUserTurn) {
-
+				user.너마음에드는칸에돌놓아라(tttBoard);
 			} else {
-
+				tttBoard.getEmptyCell(1, 1).돌놓을게(StoneType.Black);
 			}
 			tttBoard.display();
 			isUserTurn = !isUserTurn; // 참이면 거짓으로 거짓이면 참으로 반전시킴//턴넘기기
-			
 		} while (true);
 
 	}

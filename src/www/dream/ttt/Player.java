@@ -10,7 +10,7 @@ public class Player {
 
 	public Player(String name, StoneType myStone) {
 		this.name = name;
-		
+
 		this.myStone = myStone;
 	}
 
@@ -38,7 +38,5 @@ public class Player {
 	public String toString() {
 		return name;
 	}
-	
-	
-	
+
 }

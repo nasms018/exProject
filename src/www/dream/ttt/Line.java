@@ -41,11 +41,9 @@ public class Line {
 			score = 100;
 		} else if (stoneStatus[StoneType.Empty.ordinal()] == 1 && stoneStatus[StoneType.White.ordinal()] == 2) {
 			score = 80;
-		} else if (stoneStatus[StoneType.Black.ordinal()] == 3||stoneStatus[StoneType.White.ordinal()] == 3) {
+		} else if (stoneStatus[StoneType.Black.ordinal()] == 3 || stoneStatus[StoneType.White.ordinal()] == 3) {
 			return true;
-		}
-		
-		else {
+		} else {
 			score = 0;
 		}
 		return false;

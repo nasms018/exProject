@@ -104,8 +104,6 @@ public class Board {
 		return false;
 	}
 
-	
-
 	public boolean 계속할까(Player curPlayer) {
 		if (줄평가해()) {
 			System.out.println(curPlayer + "님 승리를 축하합니다!");

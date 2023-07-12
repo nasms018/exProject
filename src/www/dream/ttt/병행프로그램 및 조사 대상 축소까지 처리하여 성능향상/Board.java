@@ -95,20 +95,7 @@ public class Board {
 		listEmptyCell.remove(chosenCell);
 	}
 
-	public boolean 계속할까(Player curPlayer) {
-		줄평가해();
-		for (Line line : listLine) {
-			if (line.다채워졌니()) {
-				System.out.println(curPlayer + "님 승리를 축하");
-				return false;
-			}
-		}
-
-		// 가치 있는 줄이 없는 상태면 계속할수 없다
-		return listLine.size() != 0; // = !(listLine.isEmpty() == 0);
-	}
-
-	private void 줄평가해() {
+	public boolean 줄평가해() {
 		List<Line> listUselessLine = new ArrayList<>(); // 가치없는 줄들
 		// lambda 함수형 프로그램
 		listLine.parallelStream().forEach(line -> {// 병렬스트림(흐름) //하나짜리는 스트림
@@ -118,5 +105,20 @@ public class Board {
 			}
 		});
 		listLine.removeAll(listUselessLine);
+		for (Line line : listLine) {
+			if (line.evaluate()) {
+				return true;
+			}
+		}
+		return false;
+	}
+
+	public boolean 계속할까(Player curPlayer) {
+		if (줄평가해()) {
+			System.out.println(curPlayer + "님 승리를 축하합니다!");
+			return false;
+		}
+		// 빈칸이 있으면 true; // 비어있는 칸이 없으면 계속할수 없다.
+		return listEmptyCell.size() > 0;
 	}
 }

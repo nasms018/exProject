@@ -12,6 +12,8 @@ public class TTTmain {
 		do {
 			if (curPlayer == user) {
 				user.너마음에드는칸에돌놓아라();
+				Board.getInstance().줄평가해();
+
 			} else {
 				List<Cell> listEmptyCell = Board.getInstance().getAllEmptyCell();
 				Cell best = listEmptyCell.get(0);

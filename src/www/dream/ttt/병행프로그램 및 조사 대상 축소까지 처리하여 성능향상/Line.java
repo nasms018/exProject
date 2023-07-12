@@ -16,7 +16,7 @@ public class Line {
 	 * 블랙(오토)의 관점에서의 점수 ... : 1점 X.., .X., ..X : 5점 O.., .O., ..O : 3점 XO., X.O,
 	 * OX., .XO, O.X, .OX : 0점 OO., .OO, O.O : 80점 XX., .XX, X.X : 100점
 	 */
-	public void evaluate() {
+	public boolean evaluate() {
 		int[] stoneStatus = new int[StoneType.values().length];
 
 		for (Cell cell : listCell) {
@@ -34,21 +34,15 @@ public class Line {
 		} else if (stoneStatus[StoneType.Empty.ordinal()] == 1 && stoneStatus[StoneType.White.ordinal()] == 2) {
 			score = 80;
 		} else if (stoneStatus[StoneType.Black.ordinal()] == 3 || stoneStatus[StoneType.White.ordinal()] == 3) {
-			score = 1000;
+			return true;
 		} else {
 			score = 0;
 		}
-
+		return false;
 	}
 
 	public int getScore() {
-
 		return score;
-	}
-
-	public boolean 다채워졌니() {
-
-		return score == 1000;
 	}
 
 }

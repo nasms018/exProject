@@ -20,18 +20,18 @@ public class TTTmain {
 				for (int i = 1; i < listEmptyCell.size(); i++) {
 					Cell empty = listEmptyCell.get(i);
 					int score = empty.getScore();
-					if( score > bestScore) {
+					if (score > bestScore) {
 						best = empty;
 						bestScore = score;
 					}
 				}
-				//best.돌놓을게(StoneType.Black);
+				// best.돌놓을게(StoneType.Black);
 				auto.해당칸에돌놓아라(best);
 				Board.getInstance().빈칸목록에서지워라(best);
 			}
 			Board.getInstance().display();
-			//종료 조건은 빈칸없어서 무승부 또는 승자 나옴.
-			
+			// 종료 조건은 빈칸없어서 무승부 또는 승자 나옴.
+
 			isUserTurn = !isUserTurn; // 참이면 거짓으로 거짓이면 참으로 반전시킴//턴넘기기
 		} while (true);
 

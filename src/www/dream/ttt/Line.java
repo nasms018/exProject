@@ -20,30 +20,26 @@ public class Line {
 	 */
 	public void evaluate() {
 		int[] stoneStatus = new int[StoneType.values().length];
-				//StoneType.Black.ordinal();
-		//for (StoneType st : StoneType.values()) {
-			// Autoboxing에 의해 자동 변환되어 담김.
-			//stoneStatus++
-			//stoneStatus.put(st, 0);
-		//}
-		
+		// StoneType.Black.ordinal();
+		// for (StoneType st : StoneType.values()) {
+		// Autoboxing에 의해 자동 변환되어 담김.
+		// stoneStatus++
+		// stoneStatus.put(st, 0);
+		// }
+
 		for (Cell cell : listCell) {
 			stoneStatus[cell.돌줘().ordinal()]++;
-			//stoneStatus.put(cell.돌줘(), stoneStatus.get(cell.돌줘()) + 1);
+			// stoneStatus.put(cell.돌줘(), stoneStatus.get(cell.돌줘()) + 1);
 		}
 		if (stoneStatus[StoneType.Empty.ordinal()] == 3) {
 			score = 1;
-		} else if (stoneStatus[StoneType.Empty.ordinal()] == 2 
-				&& stoneStatus[StoneType.Black.ordinal()] == 1) {
+		} else if (stoneStatus[StoneType.Empty.ordinal()] == 2 && stoneStatus[StoneType.Black.ordinal()] == 1) {
 			score = 5;
-		} else if (stoneStatus[StoneType.Empty.ordinal()] == 2 
-				&& stoneStatus[StoneType.White.ordinal()] == 1) {
+		} else if (stoneStatus[StoneType.Empty.ordinal()] == 2 && stoneStatus[StoneType.White.ordinal()] == 1) {
 			score = 3;
-		} else if (stoneStatus[StoneType.Empty.ordinal()] == 1 
-				&& stoneStatus[StoneType.Black.ordinal()] == 2) {
+		} else if (stoneStatus[StoneType.Empty.ordinal()] == 1 && stoneStatus[StoneType.Black.ordinal()] == 2) {
 			score = 100;
-		} else if (stoneStatus[StoneType.Empty.ordinal()] == 1 
-				&& stoneStatus[StoneType.White.ordinal()] == 2) {
+		} else if (stoneStatus[StoneType.Empty.ordinal()] == 1 && stoneStatus[StoneType.White.ordinal()] == 2) {
 			score = 80;
 		} else {
 			score = 0;

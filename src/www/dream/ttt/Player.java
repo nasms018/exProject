@@ -4,10 +4,13 @@ import java.util.Scanner;
 
 public class Player {
 	private StoneType myStone;
+	private String name;
 
 	private Scanner scan = new Scanner(System.in);
 
-	public Player(StoneType myStone) {
+	public Player(String name, StoneType myStone) {
+		this.name = name;
+		
 		this.myStone = myStone;
 	}
 
@@ -18,8 +21,7 @@ public class Player {
 			int col = scan.nextInt();
 			Cell chosenCell = Board.getInstance().getEmptyCell(row, col);
 			if (chosenCell != null) {
-				chosenCell.돌놓을게(myStone);
-				Board.getInstance().빈칸목록에서지워라(chosenCell);
+				해당칸에돌놓아라(chosenCell);
 				return;
 			} else {
 
@@ -30,6 +32,13 @@ public class Player {
 	public void 해당칸에돌놓아라(Cell best) {
 		best.돌놓을게(myStone);
 		Board.getInstance().빈칸목록에서지워라(best);
-
 	}
+
+	@Override
+	public String toString() {
+		return name;
+	}
+	
+	
+	
 }

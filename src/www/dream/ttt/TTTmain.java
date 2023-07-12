@@ -5,14 +5,15 @@ import java.util.List;
 public class TTTmain {
 
 	public static void main(String[] args) {
-		Player user = new Player(StoneType.White);
-		Player auto = new Player(StoneType.Black);
+		Player user = new Player("차", StoneType.White);
+		Player auto = new Player("컴", StoneType.Black);
 		// Scanner input = new Scanner(System.in);
-		boolean isUserTurn = false; // 컴퓨터의 턴
+		Player curPlayer = auto; // 컴퓨터의 턴
 		do {
-			if (isUserTurn) {
+			if (curPlayer == user) {
 				user.너마음에드는칸에돌놓아라();
 				Board.getInstance().줄평가해();
+
 			} else {
 				List<Cell> listEmptyCell = Board.getInstance().getAllEmptyCell();
 				Cell best = listEmptyCell.get(0);
@@ -28,11 +29,21 @@ public class TTTmain {
 				// best.돌놓을게(StoneType.Black);
 				auto.해당칸에돌놓아라(best);
 				Board.getInstance().빈칸목록에서지워라(best);
+
 			}
 			Board.getInstance().display();
 			// 종료 조건은 빈칸없어서 무승부 또는 승자 나옴.
+			if (!Board.getInstance().계속할까(curPlayer))
+				break;
 
-			isUserTurn = !isUserTurn; // 참이면 거짓으로 거짓이면 참으로 반전시킴//턴넘기기
+			Board.getInstance().줄평가해();
+			if (curPlayer == user) {
+				curPlayer = auto;
+			} else {
+				curPlayer = user;
+			}
+
+			// curPlayer = !curPlayer; 참이면 거짓으로 거짓이면 참으로 반전시킴//턴넘기기
 		} while (true);
 
 	}

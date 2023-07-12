@@ -95,10 +95,26 @@ public class Board {
 		listEmptyCell.remove(chosenCell);
 	}
 
-	public void 줄평가해() {
+	public boolean 줄평가해() {
 		for (Line line : listLine) {
-			line.evaluate();
+			if (line.evaluate()) {
+				return true;
+			}
 		}
+		return false;
+	}
+
+	
+
+	public boolean 계속할까(Player curPlayer) {
+		if (줄평가해()) {
+			System.out.println(curPlayer + "님 승리를 축하합니다!");
+			return false;
+		}
+		// 빈칸이 있으면 true;
+		// 비어있는 칸이 없으면 계속할수 없다.
+		return listEmptyCell.size() > 0;
+
 	}
 
 }

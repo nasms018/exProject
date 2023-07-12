@@ -104,8 +104,14 @@ public class Board {
 			}
 		}
 
-		// 가치 있는 줄이 없는 상태면 계속할수 없다
-		return listLine.size() != 0; // = !(listLine.isEmpty() == 0);
+		if(listLine.size() == 0) {
+			System.out.println("더 해도 승리 불가(무승부)");
+			return false;
+		} else {
+			// 가치있는 줄이 있을때 계속할수 있다. 가치 있는 줄이 없는 상태면 계속할수 없다
+			return true; // = !(listLine.isEmpty() == 0);
+			
+		}
 	}
 
 	private void 줄평가해() {

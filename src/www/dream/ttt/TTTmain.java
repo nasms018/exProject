@@ -5,8 +5,8 @@ import java.util.List;
 public class TTTmain {
 
 	public static void main(String[] args) {
-		Player user = new Player("차", StoneType.White);
-		Player auto = new Player("컴", StoneType.Black);
+		Player user = new Player("유저", StoneType.White);
+		Player auto = new Player("컴퓨터", StoneType.Black);
 		// Scanner input = new Scanner(System.in);
 		Player curPlayer = auto; // 컴퓨터의 턴
 		do {

@@ -29,7 +29,6 @@ public class Player {
 
 	public void 해당칸에돌놓아라(Cell best) {
 		best.돌놓을게(myStone);
-		;
 		Board.getInstance().빈칸목록에서지워라(best);
 
 	}

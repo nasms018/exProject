@@ -11,6 +11,11 @@ public class Board {
 	private List<Line> listLine = new ArrayList<>(); // 연관 관계 lines는 잘안씀 listLinelinesList
 	private List<Cell> listEmptyCell = new ArrayList<>();
 
+	private static final Board INSTANCE = new Board(); //싱글톤 패턴
+    public static Board getInstance() {
+        return INSTANCE;
+    }
+	
 	/**
 	 * 생성자. counstructor 생성시에 처리하여야 할 기능들을 작성하는 영역 칸과 줄을 만들고 둘사이의 관계 정보까지 설정한다. 그리디
 	 * 알고리즘으로

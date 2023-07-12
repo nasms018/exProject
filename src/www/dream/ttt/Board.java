@@ -7,9 +7,10 @@ import java.util.List;
 public class Board {
 	/* 상수 정의 : private static final */
 	private static final int ROOT = 3;
-	private Cell[][] cells = new Cell[ROOT][ROOT]; //구성(포함) 관계
+	private Cell[][] cells = new Cell[ROOT][ROOT]; // 구성(포함) 관계
 	private List<Line> listLine = new ArrayList<>(); // 연관 관계 lines는 잘안씀 listLinelinesList
 	private List<Cell> listEmptyCell = new ArrayList<>();
+
 	/**
 	 * 생성자. counstructor 생성시에 처리하여야 할 기능들을 작성하는 영역 칸과 줄을 만들고 둘사이의 관계 정보까지 설정한다. 그리디
 	 * 알고리즘으로

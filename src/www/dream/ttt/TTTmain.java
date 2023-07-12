@@ -28,6 +28,7 @@ public class TTTmain {
 					}
 				}
 				best.돌놓을게(StoneType.Black);
+				tttBoard.빈칸목록에서지워라(best);
 			}
 			tttBoard.display();
 			//종료 조건은 빈칸없어서 무승부 또는 승자 나옴.

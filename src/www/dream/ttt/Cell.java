@@ -11,7 +11,7 @@ public class Cell {
 		listLine.add(line); // 너가 담긴 라인목록에 라인을 담는다.
 	}
 
-	public char 돌줘() {
+	public StoneType 돌줘() {
 		return depositedStone;
 	}
 

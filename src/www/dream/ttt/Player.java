@@ -1,5 +1,6 @@
 package www.dream.ttt;
 
+import java.util.List;
 import java.util.Scanner;
 
 public class Player {
@@ -10,7 +11,6 @@ public class Player {
 
 	public Player(String name, StoneType myStone) {
 		this.name = name;
-
 		this.myStone = myStone;
 	}
 
@@ -37,6 +37,23 @@ public class Player {
 	@Override
 	public String toString() {
 		return name;
+	}
+
+	public void playByAuto() {
+		List<Cell> listEmptyCell = Board.getInstance().getAllEmptyCell();
+		Cell best = listEmptyCell.get(0);
+		int bestScore = best.getScore();
+		for (int i = 1; i < listEmptyCell.size(); i++) {
+			Cell empty = listEmptyCell.get(i);
+			int score = empty.getScore();
+			if (score > bestScore) {
+				best = empty;
+				bestScore = score;
+			}
+		}
+		// best.돌놓을게(StoneType.Black);
+		해당칸에돌놓아라(best);
+		Board.getInstance().빈칸목록에서지워라(best);		
 	}
 
 }

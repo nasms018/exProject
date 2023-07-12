@@ -1,9 +1,7 @@
 package www.dream.ttt;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 public class Line {
 	private List<Cell> listCell = new ArrayList<>();
@@ -20,12 +18,6 @@ public class Line {
 	 */
 	public boolean evaluate() {
 		int[] stoneStatus = new int[StoneType.values().length];
-		// StoneType.Black.ordinal();
-		// for (StoneType st : StoneType.values()) {
-		// Autoboxing에 의해 자동 변환되어 담김.
-		// stoneStatus++
-		// stoneStatus.put(st, 0);
-		// }
 
 		for (Cell cell : listCell) {
 			stoneStatus[cell.돌줘().ordinal()]++;

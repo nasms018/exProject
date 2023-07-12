@@ -96,6 +96,15 @@ public class Board {
 	}
 
 	public boolean 줄평가해() {
+		List<Line> listUselessLine = new ArrayList<>(); // 가치없는 줄들
+		// lambda 함수형 프로그램
+		listLine.parallelStream().forEach(line -> {// 병렬스트림(흐름) //하나짜리는 스트림
+			line.evaluate();
+			if (line.getScore() == 0) {
+				listUselessLine.add(line);
+			}
+		});
+		listLine.remove(listUselessLine);
 		for (Line line : listLine) {
 			if (line.evaluate()) {
 				return true;
@@ -109,10 +118,7 @@ public class Board {
 			System.out.println(curPlayer + "님 승리를 축하합니다!");
 			return false;
 		}
-		// 빈칸이 있으면 true;
-		// 비어있는 칸이 없으면 계속할수 없다.
+		// 빈칸이 있으면 true; // 비어있는 칸이 없으면 계속할수 없다.
 		return listEmptyCell.size() > 0;
-
 	}
-
 }

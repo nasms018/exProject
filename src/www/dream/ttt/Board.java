@@ -2,14 +2,14 @@ package www.dream.ttt;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
+//import java.util.Scanner;
 
 public class Board {
 	/* 상수 정의 : private static final */
 	private static final int ROOT = 3;
-	private Cell[][] cells = new Cell[ROOT][ROOT];
-	private List<Line> listLine = new ArrayList<>(); // lines는 잘안씀 listLinelinesList
-
+	private Cell[][] cells = new Cell[ROOT][ROOT]; //구성(포함) 관계
+	private List<Line> listLine = new ArrayList<>(); // 연관 관계 lines는 잘안씀 listLinelinesList
+	private List<Cell> listEmptyCell = new ArrayList<>();
 	/**
 	 * 생성자. counstructor 생성시에 처리하여야 할 기능들을 작성하는 영역 칸과 줄을 만들고 둘사이의 관계 정보까지 설정한다. 그리디
 	 * 알고리즘으로
@@ -19,6 +19,7 @@ public class Board {
 		for (int row = 0; row < ROOT; row++) {
 			for (int col = 0; col < ROOT; col++) {
 				cells[row][col] = new Cell();
+				listEmptyCell.add(cells[row][col]);
 			}
 		}
 		// 가로 Line 만들기
@@ -58,10 +59,10 @@ public class Board {
 	/**
 	 * 상황출력
 	 */
-	private void display() {
+	public void display() {
 		for (int row = 0; row < ROOT; row++) {
 			for (int col = 0; col < ROOT; col++) {
-				System.out.print(cells[row][col].돌그림줘());
+				System.out.print(cells[row][col].돌줘().getDisplayChar());
 			}
 			System.out.println();
 		}
@@ -79,22 +80,18 @@ public class Board {
 		return null;
 	}
 
-	public static void main(String[] args) {
-		Board tttBoard = new Board();
-		Player user = new Player(StoneType.White);
-		Player com = new Player(StoneType.Black);
-		Scanner input = new Scanner(System.in);
-		boolean isUserTurn = false; // 컴퓨터의 턴
-		do {
-			if (isUserTurn) {
-				user.너마음에드는칸에돌놓아라(tttBoard);
-			} else {
-				tttBoard.getEmptyCell(1, 1).돌놓을게(StoneType.Black);
-			}
-			tttBoard.display();
-			isUserTurn = !isUserTurn; // 참이면 거짓으로 거짓이면 참으로 반전시킴//턴넘기기
-		} while (true);
+	public List<Cell> getAllEmptyCell() {
+		return listEmptyCell;
+	}
 
+	public void 빈칸목록에서지워라(Cell chosenCell) {
+		listEmptyCell.remove(chosenCell);
+	}
+
+	public void 줄평가해() {
+		for (Line line : listLine) {
+			line.evaluate();
+		}
 	}
 
 }

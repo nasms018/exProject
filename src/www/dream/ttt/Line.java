@@ -19,23 +19,31 @@ public class Line {
 	 * OX., .XO, O.X, .OX : 0점 OO., .OO, O.O : 80점 XX., .XX, X.X : 100점
 	 */
 	public void evaluate() {
-		Map<StoneType, Integer> stoneStatus = new HashMap<>();
-		for (StoneType st : StoneType.values()) {
+		int[] stoneStatus = new int[StoneType.values().length];
+				//StoneType.Black.ordinal();
+		//for (StoneType st : StoneType.values()) {
 			// Autoboxing에 의해 자동 변환되어 담김.
-			stoneStatus.put(st, 0);
-		}
+			//stoneStatus++
+			//stoneStatus.put(st, 0);
+		//}
+		
 		for (Cell cell : listCell) {
-			stoneStatus.put(cell.돌줘(), stoneStatus.get(cell.돌줘()) + 1);
+			stoneStatus[cell.돌줘().ordinal()]++;
+			//stoneStatus.put(cell.돌줘(), stoneStatus.get(cell.돌줘()) + 1);
 		}
-		if (stoneStatus.get(stoneStatus.Empty) == 3) {
+		if (stoneStatus[StoneType.Empty.ordinal()] == 3) {
 			score = 1;
-		} else if (stoneStatus.get(stoneStatus.Empty) == 2 && stoneStatus.get(stoneStatus.Black) == 1) {
+		} else if (stoneStatus[StoneType.Empty.ordinal()] == 2 
+				&& stoneStatus[StoneType.Black.ordinal()] == 1) {
 			score = 5;
-		} else if (stoneStatus.get(stoneStatus.Empty) == 2 && stoneStatus.get(stoneStatus.White) == 1) {
+		} else if (stoneStatus[StoneType.Empty.ordinal()] == 2 
+				&& stoneStatus[StoneType.White.ordinal()] == 1) {
 			score = 3;
-		} else if (stoneStatus.get(stoneStatus.Empty) == 1 && stoneStatus.get(stoneStatus.Black) == 2) {
+		} else if (stoneStatus[StoneType.Empty.ordinal()] == 1 
+				&& stoneStatus[StoneType.Black.ordinal()] == 2) {
 			score = 100;
-		} else if (stoneStatus.get(stoneStatus.Empty) == 1 && stoneStatus.get(stoneStatus.White) == 2) {
+		} else if (stoneStatus[StoneType.Empty.ordinal()] == 1 
+				&& stoneStatus[StoneType.White.ordinal()] == 2) {
 			score = 80;
 		} else {
 			score = 0;

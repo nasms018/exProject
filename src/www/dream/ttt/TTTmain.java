@@ -34,7 +34,6 @@ public class TTTmain {
 			if (!Board.getInstance().계속할까(curPlayer))
 				break;
 
-	
 			if (curPlayer == user) {
 				curPlayer = auto;
 			} else {

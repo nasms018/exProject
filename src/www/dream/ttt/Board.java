@@ -104,7 +104,7 @@ public class Board {
 				listUselessLine.add(line);
 			}
 		});
-		listLine.remove(listUselessLine);
+		listLine.removeAll(listUselessLine);
 		for (Line line : listLine) {
 			if (line.evaluate()) {
 				return true;

@@ -10,8 +10,9 @@ public class UserPlayer extends Player {
 
 	private Scanner scan = new Scanner(System.in);
 
-	public UserPlayer(String name, StoneType myStone) {
-		super(name, myStone);
+	public UserPlayer(String name) {
+		super(name);
+		super.myStone=StoneType.White;
 	}
 
 	@Override

@@ -10,8 +10,8 @@ public class TTTmain {
 	public static void main(String[] args) {
 		final int PLAYER_CNT = 2;
 		Player[] players = new Player[PLAYER_CNT];
-		players[1] = new Player("컴퓨터", StoneType.Black);
-		players[0] = new UserPlayer("유저", StoneType.White);
+		players[1] = new Player("컴퓨터");
+		players[0] = new UserPlayer("유저");
 
 		int curPlayer = 0;
 		do {

@@ -10,9 +10,9 @@ public class Player {
 	private String name;
 	protected StoneType myStone;
 
-	public Player(String name, StoneType myStone) {
+	public Player(String name) {
 		this.name = name;
-		this.myStone = myStone;
+		this.myStone = StoneType.Black;
 	}
 
 	public void 너마음에드는칸에돌놓아라() { // 오토플레이어 기능

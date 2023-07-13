@@ -5,7 +5,6 @@ import java.util.List;
 public class Player {
 	private String name;
 	protected StoneType myStone;
-	
 
 	public Player(String name, StoneType myStone) {
 		this.name = name;
@@ -33,5 +32,5 @@ public class Player {
 	public String toString() {
 		return name;
 	}
-	
+
 }

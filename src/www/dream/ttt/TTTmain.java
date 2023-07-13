@@ -1,5 +1,10 @@
 package www.dream.ttt;
 
+import www.dream.ttt.model.Board;
+import www.dream.ttt.model.domain.StoneType;
+import www.dream.ttt.player.Player;
+import www.dream.ttt.player.UserPlayer;
+
 public class TTTmain {
 
 	public static void main(String[] args) {

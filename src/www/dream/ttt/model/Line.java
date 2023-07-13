@@ -1,7 +1,9 @@
-package www.dream.ttt;
+package www.dream.ttt.model;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import www.dream.ttt.model.domain.StoneType;
 
 public class Line {
 	private List<Cell> listCell = new ArrayList<>();

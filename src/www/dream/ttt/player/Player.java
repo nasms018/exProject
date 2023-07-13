@@ -1,6 +1,10 @@
-package www.dream.ttt;
+package www.dream.ttt.player;
 
 import java.util.List;
+
+import www.dream.ttt.model.Board;
+import www.dream.ttt.model.Cell;
+import www.dream.ttt.model.domain.StoneType;
 
 public class Player {
 	private String name;

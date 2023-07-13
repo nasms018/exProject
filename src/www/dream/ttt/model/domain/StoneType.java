@@ -1,4 +1,4 @@
-package www.dream.ttt;
+package www.dream.ttt.model.domain;
 
 public enum StoneType {
 	Empty('.'), White('O'), Black('X');

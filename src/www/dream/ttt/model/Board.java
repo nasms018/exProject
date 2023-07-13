@@ -1,8 +1,10 @@
-package www.dream.ttt;
+package www.dream.ttt.model;
 
 import java.util.ArrayList;
 import java.util.List;
 //import java.util.Scanner;
+
+import www.dream.ttt.player.Player;
 
 public class Board {
 	/* 상수 정의 : private static final */

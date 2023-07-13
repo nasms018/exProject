@@ -1,7 +1,9 @@
-package www.dream.ttt;
+package www.dream.ttt.model;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import www.dream.ttt.model.domain.StoneType;
 
 public class Cell {
 	private List<Line> listLine = new ArrayList<>(); // listLine:너가 담긴 라인목록

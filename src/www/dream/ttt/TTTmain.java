@@ -3,29 +3,20 @@ package www.dream.ttt;
 public class TTTmain {
 
 	public static void main(String[] args) {
-		Player user = new Player("유저", StoneType.White);
-		Player auto = new Player("컴퓨터", StoneType.Black);
-		// Scanner input = new Scanner(System.in);
-		Player curPlayer = auto; // 컴퓨터의 턴
+		final int PLAYER_CNT =2;
+		Player[] players = new Player[PLAYER_CNT];
+		players[1] = new Player("컴퓨터", StoneType.Black);
+		players[0] = new UserPlayer("유저", StoneType.White);
+		
+		int curPlayer = 0;
 		do {
-			if (curPlayer == user) {
-				user.너마음에드는칸에돌놓아라();
-			} else { // 컴퓨터 최선의 위치 선택
-				auto.playByAuto();
-			}
+			players[curPlayer].너마음에드는칸에돌놓아라();
 			Board.getInstance().display();
 			// 종료 조건은 빈칸없어서 무승부 또는 승자 나옴.
-			if (!Board.getInstance().계속할까(curPlayer))
+			if (!Board.getInstance().계속할까(players[curPlayer]))
 				break;
-
-			if (curPlayer == user) {
-				curPlayer = auto;
-			} else {
-				curPlayer = user;
-			}
-			// curPlayer = !curPlayer; 참이면 거짓으로 거짓이면 참으로 반전시킴//턴넘기기
+			curPlayer = ++curPlayer % PLAYER_CNT;
+			
 		} while (true);
-
 	}
-
 }

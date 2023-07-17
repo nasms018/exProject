@@ -2,6 +2,7 @@ package radixSorter;
 
 import java.util.Arrays;
 import www.dream.lib.ArrayHelper;
+import www.dream.lib.NumberHelper;
 import www.dream.lib.ReferenceHelper;
 import www.dream.lib.data.Pair;
 import www.dream.lib.discrete.MathHelper;
@@ -14,11 +15,17 @@ public class RSC {
 
 	public static <T extends Comparable<T>> T[] rxSort(T[] data, int radix) {
 		Pair<T, T> minMaxPair = ArrayHelper.findMinMax(data);
-		// 숫자의 최대 자리수
-		int maxDigit = MathHelper.maxDigists(minMaxPair.getSecondVal(), radix); // 3
+//{ 45, -1745, -5, 60};
+		Number fv = NumberHelper.abs((Number) minMaxPair.getFirstVal());
+		Number sv = NumberHelper.abs((Number) minMaxPair.getSecondVal());
+		Number longest = fv.toString().length() > (sv.toString().length()) ? fv : sv;
+
+		// 숫자의 최대 자리수  
+		int maxDigit = MathHelper.maxDigists(longest, radix); // 3
 		int dataSize = data.length;
 
-		int[] buketSize = new int[radix]; // 특정 자리에서 숫자들의 카운트
+		int bucketSize = 2 * radix - 1;
+		int[] bucketEleCount = new int[bucketSize]; // 특정 자리에서 숫자들의 카운트
 
 		// Cannot create a generic array of T T[] sortResult = new T[dataSize];
 		// 해당 자릿수로 정렬한 결과
@@ -30,8 +37,8 @@ public class RSC {
 		// 메모리 할당
 
 		for (n = 0; n < maxDigit; n++) { // 1의 자리, 10의자리, 100의 자리 순으로 진행
-			for (i = 0; i < radix; i++)
-				buketSize[i] = 0; // 초기화
+			for (i = 0; i < bucketSize; i++)
+				bucketEleCount[i] = 0; // 초기화
 			// 위치값 계산.
 			// n:0 => 1, 1 => 10, 2 => 100
 
@@ -44,17 +51,18 @@ public class RSC {
 					bucketId[j] = (int) ((int) data[j] / curDigit) % radix;
 				if (data[j] instanceof Long)
 					bucketId[j] = (int) ((long) data[j] / curDigit) % radix;
-				buketSize[bucketId[j]]++;
+				bucketId[j] += radix - 1; // 음수를 다루기 위한 방번호 밀기
+				bucketEleCount[bucketId[j]]++;
 			}
 			// 카운트 누적합을 구한다. 계수정렬을 위해서.
-			for (i = 1; i < radix; i++) {
-				buketSize[i] += buketSize[i - 1];
+			for (i = 1; i < bucketSize; i++) {
+				bucketEleCount[i] += bucketEleCount[i - 1];
 			}
 			// 카운트를 사용해 각 항목의 위치를 결정한다.
 			// 계수정렬 방식
 			for (j = dataSize - 1; j >= 0; j--) { // 뒤에서부터 시작
-				sortResult[buketSize[bucketId[j]] - 1] = data[j];
-				buketSize[bucketId[j]] = buketSize[bucketId[j]] - 1; // 해당 숫자 카운트를 1 감소
+				sortResult[bucketEleCount[bucketId[j]] - 1] = data[j];
+				bucketEleCount[bucketId[j]] = bucketEleCount[bucketId[j]] - 1; // 해당 숫자 카운트를 1 감소
 			}
 			// 데이터 교환
 			data = ReferenceHelper.swap(sortResult, sortResult = data);

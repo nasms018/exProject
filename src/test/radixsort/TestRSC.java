@@ -9,13 +9,12 @@ public class TestRSC {
 		data = RSC.rxSort(data, 10);
 		for (Integer v : data)
 			System.out.print(v + " ");
-		
+
 		System.out.println();
-		Long[] ld = { 170L, 45L, 75L, 88L, 255L, 4L, 62L, 802L, 66L , 38L};
+		Long[] ld = { 170L, 45L, 75L, 88L, 255L, 4L, 62L, 802L, 66L, 38L };
 		ld = RSC.rxSort(ld, 10);
 		for (Long v : ld)
 			System.out.print(v + " ");
-		
-		
+
 	}
 }

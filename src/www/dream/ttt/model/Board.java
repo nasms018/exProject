@@ -10,17 +10,16 @@ public class Board {
 	/* 상수 정의 : private static final */
 	private static final int ROOT = 3;
 	private Cell[][] cells = new Cell[ROOT][ROOT]; // 구성(포함) 관계
-	private List<Line> listLine = new ArrayList<>(); // 연관 관계 lines는 잘안씀 listLinelinesList
+	private List<Line> listLine = new ArrayList<>();
 	private List<Cell> listEmptyCell = new ArrayList<>();
 
 	private static final Board INSTANCE = new Board(); // 싱글톤 패턴
-
 	public static Board getInstance() {
 		return INSTANCE;
 	}
 
 	/**
-	 * 생성자. counstructor 생성시에 처리하여야 할 기능들을 작성하는 영역 칸과 줄을 만들고 둘사이의 관계 정보까지 설정한다. 그리디
+	 * 생성자. counstructor 생성시에 처리하여야 할 기능들을 작성하고 영역 칸과 줄을 만들고 둘사이의 관계 정보까지 설정한다. 그리디
 	 * 알고리즘으로
 	 */
 	public Board() {
@@ -61,7 +60,7 @@ public class Board {
 			revDiagonalLine.칸담아라(cells[idx][ROOT - idx - 1]);
 		}
 		listLine.add(revDiagonalLine);
-
+		System.out.println(Cell.numberOfCellCreated);
 		// --Cell아. 너는 Line의 담겼단다.
 	}
 
@@ -94,7 +93,7 @@ public class Board {
 	}
 
 	public void 빈칸목록에서지워라(Cell chosenCell) {
-		listEmptyCell.remove(chosenCell);
+		listEmptyCell.remove(chosenCell); //돌을 놓은 칸은 빈칸목록에서 지움
 	}
 
 	public boolean 계속할까(Player curPlayer) {

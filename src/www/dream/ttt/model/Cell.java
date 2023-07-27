@@ -6,9 +6,15 @@ import java.util.List;
 import www.dream.ttt.model.domain.StoneType;
 
 public class Cell {
+	//전역변수
+	protected static int numberOfCellCreated = 0;
+	
 	private List<Line> listLine = new ArrayList<>(); // listLine:너가 담긴 라인목록
 	private StoneType depositedStone = StoneType.Empty; // 놓인 돌
 
+	protected Cell() {
+		numberOfCellCreated++;
+	}
 	public void 너는이라인에담겨있다기억해라(Line line) {
 		listLine.add(line); // 너가 담긴 라인목록에 라인을 담는다.
 	}

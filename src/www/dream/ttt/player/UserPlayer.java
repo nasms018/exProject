@@ -21,7 +21,7 @@ public class UserPlayer extends Player {
 			System.out.print("돌이 놓인 상황을 보고 빈칸을 선택하세요.");// 아웃에대한 의존관계
 			int row = scan.nextInt(); // 의존관계 : 가장 보편적인 관계
 			int col = scan.nextInt();
-			Cell chosenCell = Board.getInstance().getEmptyCell(row, col);
+			Cell chosenCell = Board.getInstance().getEmptyCell(row, col);//빈칸 찾아서 선택된 칸에 돌 놓는다.
 			if (chosenCell != null) {
 				// this(나)의 상위 클래스 관점에서의 나입니다.
 				chosenCell.돌놓을게(super.myStone);

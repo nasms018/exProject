@@ -5,7 +5,7 @@ import www.dream.ttt.model.domain.StoneType;
 import www.dream.ttt.player.Player;
 import www.dream.ttt.player.UserPlayer;
 
-public class TTTmain {
+public class TTTMain {
 
 	public static void main(String[] args) {
 		final int PLAYER_CNT = 2;
@@ -21,7 +21,6 @@ public class TTTmain {
 			if (!Board.getInstance().계속할까(players[curPlayer]))
 				break;
 			curPlayer = ++curPlayer % PLAYER_CNT;
-
 		} while (true);
 	}
 }

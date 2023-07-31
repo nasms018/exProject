@@ -12,7 +12,7 @@ public class RSC_Perfomance {
 	 */
 	private static final byte MASK = 0b1111, MASK_LENGTH = 4;
 
-	private static byte[] rxSort(byte[] data) {
+	public static byte[] rxSort(byte[] data) {
 		int dataSize = data.length;
 		byte[] sortResult = Arrays.copyOf(data, dataSize);
 		// 16개의 방이 필요// 버킷별 요소갯수

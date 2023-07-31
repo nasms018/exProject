@@ -1,7 +1,7 @@
 package test.radixsort;
 
 import radixSorter.RSC;
-import radixSorter.RSC_Perfomance;
+import radixSorter.RS_Perfomance;
 
 public class TestRSC2 {
 	public static void main(String[] args) {
@@ -19,12 +19,12 @@ public class TestRSC2 {
 		System.out.printf("걸린시간은 %d밀리초\t", dupTimeMillis);
 
 		startTimeMillis = System.currentTimeMillis();
-		data = RS_Perfomance.rxSort(lData);
+		lData = RS_Perfomance.rxSort(lData);
 		dupTimeMillis = System.currentTimeMillis() - startTimeMillis;
 		System.out.printf("걸린시간은 %d밀리초\t", dupTimeMillis);
 
 		for (int i = 0; i < 10; i++) {
-			System.out.print(data[i] + " ");
+			System.out.print(lData[i] + " ");
 		}
 		System.out.println();
 

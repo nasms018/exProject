@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>포트리스-01</title>
+    <style>
+        canvas {
+            border: 1px dotted rgb(255, 0, 0);
+            /* 캔버스에 경계선을 그려준다. */
+            background-color: #ffffe2;
+            /* 캔버스의 배경색을 지정한다. */
+        }
+    </style>
+</head>
+
+<body onload="init()">
+    <canvas id="fortressCanvas" width="500" height="300"></canvas>
+    <div>
+        속도<input id="velocity" value="40" type="number" min="5" max="100" step="1" />
+        각도<input id="angle" value="45" type="number" min="5" max="85" step="1" />
+        <div id="score">점수 = 0</div>
+        <button onclick="start()">발사</button>
+    </div>
+    <script src="./js/ball.js"></script>
+    <script src="./js/cannon.js"></script>
+    <script>
+		
+		//import * as name from "./js/fo.js"
+        var context = document.getElementById('fortressCanvas').getContext('2d');;			/* 컨텍스트 객체*/
+        var velocity;			
+        var angle;			
+        var ballV;			/* 공의 현재 속도 */
+        var tryCnt = 0;			/* 시도 횟수 */
+        var score = 0;		/* 점수 */
+        var imgGround = new Image();		/* 그라운드(땅) 이미지 객체 생성 */
+        imgGround.src = "./images/greenP.jpg";		/* 이미지 파일 이름 설정 */
+        var imgTarget = new Image();
+        imgTarget.src = "./images/netP2.jpg";
+        var timer;					/* 타이머 객체 변수 */
+
+		let ball = new Ball(10);
+		let cannon = new Cannon(0, 0);
+
+
+
+        /* 초기화를 담당하는 함수 */
+        function init() {
+			clearInterval(timer);
+			cannon.위치지정(10, 250);
+			cannon.장전(ball);
+            draw();
+            
+        }
+        /* 사용자가 발사 버튼을 누르면 호출된다. */
+        function start() {
+			tryCnt++;
+            init();
+            /* 사용자가 입력한 공의 초기속도 */
+            velocity = Number(document.getElementById("velocity").value);
+            /* 사용자가 입력한 공의 초기각도 */
+            angle = Number(document.getElementById("angle").value);
+            cannon.발사(velocity, angle);
+            // 초당 10회
+            ball.그리기간격(calculate, 100);
+            timer = setInterval(calculate, 100);
+            
+        }
+        /* 공의 현재 속도와 위치를 업데이트한다. */
+        function calculate() {
+			ball.시간경과();
+			
+
+            /* 공이 목표물에 맞았으면
+            if ((ballX >= 450) && (ballX <= 480) && (ballY >= 60) && (ballY <= 210)) {
+				//
+                score++;
+                document.getElementById("score").innerHTML = tryCnt + "번 쏘아 점수=" + score + "점 획득";
+                clearInterval(timer);
+            }
+             공이 경계를 벗어났으면
+            if (ballY >= 300 || ballY < 0) {
+                clearInterval(timer);
+            } 
+            */
+            draw();
+        }
+        /* 전체 화면을 그리는 함수 */
+        function draw() {
+            context.clearRect(0, 0, 500, 300);	/* 화면을 지운다. */
+            ball.drawBall(context);
+            drawBackground();
+        }
+        
+        /* 배경을 화면에 그린다. */
+        function drawBackground() {
+            context.drawImage(imgGround, 0, 260);
+            context.drawImage(imgTarget, 450, 60, 30, 150);
+        }
+
+
+
+    </script>
+</body>
+
+</html>

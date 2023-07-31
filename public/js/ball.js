@@ -22,8 +22,7 @@ class Ball {
 		this.timeInterVal = timeInterVal;
 	}
 	시간경과() {
-		//중력가속도 적용
-            this.vY += 1.98;
+		
 			//수평 등속 운동
             this.posX += this.vX;
             this.posY += this.vY;

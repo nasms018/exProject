@@ -23,11 +23,13 @@
         <button onclick="start()">발사</button>
     </div>
     <script src="./js/ball.js"></script>
+    <script src="./js/cannon.js"></script>
     <script>
+		
 		//import * as name from "./js/fo.js"
-        var context;			/* 컨텍스트 객체*/
-        var velocity;			/* 사용자가 입력한 공의 초기속도 */
-        var angle;			/* 사용자가 입력한 공의 초기각도 */
+        var context = document.getElementById('fortressCanvas').getContext('2d');;			/* 컨텍스트 객체*/
+        var velocity;			
+        var angle;			
         var ballV;			/* 공의 현재 속도 */
         var tryCnt = 0;			/* 시도 횟수 */
         var score = 0;		/* 점수 */
@@ -38,13 +40,17 @@
         var timer;					/* 타이머 객체 변수 */
 
 		let ball = new Ball(10);
+		let cannon = new Cannon(0, 0);
+
+
 
         /* 초기화를 담당하는 함수 */
         function init() {
 			clearInterval(timer);
+			cannon.위치지정(10, 250);
+			cannon.장전(ball);
             ball.장전(10, 250);
-
-            context = document.getElementById('fortressCanvas').getContext('2d');
+            
             draw();
             
         }
@@ -52,8 +58,11 @@
         function start() {
 			tryCnt++;
             init();
+            /* 사용자가 입력한 공의 초기속도 */
             velocity = Number(document.getElementById("velocity").value);
+            /* 사용자가 입력한 공의 초기각도 */
             angle = Number(document.getElementById("angle").value);
+            cannon.발사(velocity, angle);
             // 360>> PI
             var angleR = angle * Math.PI / 180;
 			//vector 분석

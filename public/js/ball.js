@@ -3,8 +3,7 @@ class Ball {
 	constructor(radius) {
 
 		this.radius = radius;// 공의 반지름
-		this.posX = 0;	//공의 위치
-		this.posY = 0;
+		
 		this.vX = 0;	//공의 속도
 		this.vY = 0;
 
@@ -18,12 +17,15 @@ class Ball {
 		this.vX = ballVx;	//공의 속도
 		this.vY = ballVy;
 	}
+	
 	그리기간격(timeInterVal) {
 		this.timeInterVal = timeInterVal;
 	}
+	
 	시간경과() {
 		
 			//수평 등속 운동
+			this.vY += 1.98;
             this.posX += this.vX;
             this.posY += this.vY;
 	}

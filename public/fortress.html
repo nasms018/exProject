@@ -33,7 +33,7 @@
 		화면계.setAttribute('width', 500);
 
 		//import * as name from "./js/fo.js"
-		var context = 화면계.getContext('2d');;			/* 컨텍스트 객체*/
+					/* 컨텍스트 객체*/
 		var tryCnt = 0;			/* 시도 횟수 */
 		var score = 0;		/* 점수 */
 		var imgGround = new Image();		/* 그라운드(땅) 이미지 객체 생성 */
@@ -43,7 +43,7 @@
 		var timer;					/* 타이머 객체 변수 */
 
 		let earth = new Planet(imgGround, 10);
-		let ball = new Ball(1);
+		let ball = new Ball(0.5);
 		let cannon = new Cannon(0, 0);
 		let target = new Target(imgTarget, 450, 60, 30, 200);
 
@@ -93,14 +93,12 @@
 		}
 		/* 전체 화면을 그리는 함수 */
 		function draw() {
-			context.clearRect(0, 0, 500, 300);	/* 화면을 지운다. */
-			//earth.draw(context);
-			context.drawImage(imgGround, 0, 260);
+			var context = 화면계.getContext('2d');
+			context.clearRect(0, 0, 화면계.getAttribute(width), 화면계.getAttribute(height));	/* 화면을 지운다. */
+			earth.땅그리기(context, 화면계.getAttribute(height));
 			target.draw(context);
 			ball.drawBall(context);
 		}
-
-
 
 	</script>
 </body>

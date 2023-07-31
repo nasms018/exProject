@@ -49,8 +49,6 @@
 			clearInterval(timer);
 			cannon.위치지정(10, 250);
 			cannon.장전(ball);
-            ball.장전(10, 250);
-            
             draw();
             
         }
@@ -63,36 +61,28 @@
             /* 사용자가 입력한 공의 초기각도 */
             angle = Number(document.getElementById("angle").value);
             cannon.발사(velocity, angle);
-            // 360>> PI
-            var angleR = angle * Math.PI / 180;
-			//vector 분석
-            ballVx = velocity * Math.cos(angleR);
-            ballVy = -velocity * Math.sin(angleR);
-
-            draw();
             // 초당 10회
+            ball.그리기간격(calculate, 100);
             timer = setInterval(calculate, 100);
-            return false;
+            
         }
         /* 공의 현재 속도와 위치를 업데이트한다. */
         function calculate() {
-			//중력가속도 적용
-            ballVy = ballVy + 1.98;
-			//수평 등속 운동
-            ballX = ballX + ballVx;
-            ballY = ballY + ballVy;
+			ball.시간경과();
+			
 
-            /* 공이 목표물에 맞았으면 */
+            /* 공이 목표물에 맞았으면
             if ((ballX >= 450) && (ballX <= 480) && (ballY >= 60) && (ballY <= 210)) {
 				//
                 score++;
                 document.getElementById("score").innerHTML = tryCnt + "번 쏘아 점수=" + score + "점 획득";
                 clearInterval(timer);
             }
-            /* 공이 경계를 벗어났으면 */
+             공이 경계를 벗어났으면
             if (ballY >= 300 || ballY < 0) {
                 clearInterval(timer);
-            }
+            } 
+            */
             draw();
         }
         /* 전체 화면을 그리는 함수 */

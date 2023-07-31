@@ -14,14 +14,14 @@ class Cannon {
 	}
 	장전(ball) {
 		this.ball = ball;
-		this.ball.장전(posX, posY);
+		this.ball.위치지정(this.posX, this.posY);
 	}
 	발사(velocity, angle) {
 		// 360>> PI
             var angleR = angle * Math.PI / 180;
 			//vector 분석
-            ballVx = velocity * Math.cos(angleR);
-            ballVy = -velocity * Math.sin(angleR);
+            var ballVx = velocity * Math.cos(angleR);
+            var ballVy = -velocity * Math.sin(angleR);
             
             this.ball.발사(ballVx, ballVy);
             

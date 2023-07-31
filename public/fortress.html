@@ -6,9 +6,9 @@
     <title>포트리스-01</title>
     <style>
         canvas {
-            border: 1px dotted rgb(255, 0, 0);
+            border: 1px dotted rgb(0, 0, 255);
             /* 캔버스에 경계선을 그려준다. */
-            background-color: #ffffe2;
+            background-color: rgb(219, 255, 238);
             /* 캔버스의 배경색을 지정한다. */
         }
     </style>
@@ -17,13 +17,14 @@
 <body onload="init()">
     <canvas id="fortressCanvas" width="500" height="300"></canvas>
     <div>
-        속도<input id="velocity" value="40" type="number" min="5" max="100" step="1" />
+        속도<input id="velocity" value="35" type="number" min="5" max="100" step="1" />
         각도<input id="angle" value="45" type="number" min="5" max="85" step="1" />
         <div id="score">점수 = 0</div>
         <button onclick="start()">발사</button>
     </div>
     <script src="./js/ball.js"></script>
     <script src="./js/cannon.js"></script>
+    <script src="./js/target.js"></script>
     <script>
 		
 		//import * as name from "./js/fo.js"
@@ -41,7 +42,7 @@
 
 		let ball = new Ball(10);
 		let cannon = new Cannon(0, 0);
-
+		let target = new Target(imgTarget, 450, 60, 30, 200);
 
 
         /* 초기화를 담당하는 함수 */
@@ -69,17 +70,19 @@
         /* 공의 현재 속도와 위치를 업데이트한다. */
         function calculate() {
 			ball.시간경과();
-			
-
-            /* 공이 목표물에 맞았으면
-            if ((ballX >= 450) && (ballX <= 480) && (ballY >= 60) && (ballY <= 210)) {
-				//
+			if (ball.맞추었니(target)){
                 score++;
                 document.getElementById("score").innerHTML = tryCnt + "번 쏘아 점수=" + score + "점 획득";
                 clearInterval(timer);
+				
+				
+			}
+            /* 공이 목표물에 맞았으면
+            if ((ballX >= 450) && (ballX <= 480) && (ballY >= 60) && (ballY <= 210)) {
+				//
             }
              공이 경계를 벗어났으면
-            if (ballY >= 300 || ballY < 0) {
+            if (ballY >= 300) {
                 clearInterval(timer);
             } 
             */
@@ -88,14 +91,9 @@
         /* 전체 화면을 그리는 함수 */
         function draw() {
             context.clearRect(0, 0, 500, 300);	/* 화면을 지운다. */
-            ball.drawBall(context);
-            drawBackground();
-        }
-        
-        /* 배경을 화면에 그린다. */
-        function drawBackground() {
             context.drawImage(imgGround, 0, 260);
-            context.drawImage(imgTarget, 450, 60, 30, 150);
+            target.draw(context);
+            ball.drawBall(context);
         }
 
 

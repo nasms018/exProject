@@ -28,6 +28,11 @@ class Ball {
             this.posX += this.vX;
             this.posY += this.vY;
 	}
+	맞추었니(target) {
+		return target.inXBound(this.posX) 
+		&& target.inYBound(this.posY);
+		//(this.posX > 60 && this.posY <=210);
+		}
 	/* 공을 화면에 그린다. */
 	drawBall(stx) {
 		stx.beginPath();

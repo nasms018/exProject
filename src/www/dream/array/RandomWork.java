@@ -25,7 +25,6 @@ public class RandomWork {
 			displayBoard(visited);
 		}
 	}
-
 	/**
 	 * 방문 경로 출력
 	 * 

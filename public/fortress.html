@@ -32,6 +32,7 @@
         var ballX = 10;		/* 공의 현재 x방향 위치 */
         var ballY = 250;		/* 공의 현재 y방향 위치 */
         var ballRadius = 10;		/* 공의 반지름 */
+        var tryCnt = 0;			/* 시도 횟수 */
         var score = 0;		/* 점수 */
         var image = new Image();		/* 이미지 객체 생성 */
         image.src = "./images/greenP.jpg";		/* 이미지 파일 이름 설정 */
@@ -41,37 +42,44 @@
 
         /* 초기화를 담당하는 함수 */
         function init() {
+			clearInterval(timer);
             ballX = 10;
             ballY = 250;
             ballRadius = 10;
             context = document.getElementById('fortressCanvas').getContext('2d');
             draw();
+            
         }
         /* 사용자가 발사 버튼을 누르면 호출된다. */
         function start() {
+			tryCnt++;
             init();
             velocity = Number(document.getElementById("velocity").value);
             angle = Number(document.getElementById("angle").value);
+            // 360>> PI
             var angleR = angle * Math.PI / 180;
-
+			//vector 분석
             ballVx = velocity * Math.cos(angleR);
             ballVy = -velocity * Math.sin(angleR);
 
             draw();
+            // 초당 10회
             timer = setInterval(calculate, 100);
             return false;
         }
         /* 공의 현재 속도와 위치를 업데이트한다. */
         function calculate() {
+			//중력가속도 적용
             ballVy = ballVy + 1.98;
-
+			//수평 등속 운동
             ballX = ballX + ballVx;
             ballY = ballY + ballVy;
 
             /* 공이 목표물에 맞았으면 */
             if ((ballX >= 450) && (ballX <= 480) && (ballY >= 60) && (ballY <= 210)) {
+				//
                 score++;
-                document.getElementById("score").innerHTML = "점수=" + score;
+                document.getElementById("score").innerHTML = tryCnt + "번 쏘아 점수=" + score + "점 획득";
                 clearInterval(timer);
             }
             /* 공이 경계를 벗어났으면 */

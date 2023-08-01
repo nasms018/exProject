@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<title>포트리스-01</title>
+	<style>
+		canvas {
+			border: 1px dotted rgb(0, 0, 255);
+			/* 캔버스에 경계선을 그려준다. */
+			background-color: rgb(219, 255, 238);
+			/* 캔버스의 배경색을 지정한다. */
+		}
+	</style>
+</head>
+
+<body onload="init()">
+	<canvas id="fortressCanvas"></canvas>
+	<div>
+		속도<input id="velocity" value="65" type="number" min="5" max="100" step="1" />
+		각도<input id="angle" value="35" type="number" min="5" max="85" step="1" />
+		<div id="score">점수 = 0</div>
+		<button onclick="start()">발사</button>
+	</div>
+	<script src="./js/ball.js"></script>
+	<script src="./js/cannon.js"></script>
+	<script src="./js/target.js"></script>
+	<script src="./js/planet.js"></script>
+	
+	<script>
+		let 화면계 =document.getElementById("fortressCanvas");
+		화면계.setAttribute('height', 300);
+		화면계.setAttribute('width', 500);
+
+		//import * as name from "./js/fo.js"
+					/* 컨텍스트 객체*/
+		var tryCnt = 0;			/* 시도 횟수 */
+		var score = 0;		/* 점수 */
+		var imgGround = new Image();		/* 그라운드(땅) 이미지 객체 생성 */
+		imgGround.src = "./images/greenP.jpg";		/* 이미지 파일 이름 설정 */
+		var imgTarget = new Image();
+		imgTarget.src = "./images/netP2.jpg";
+		var timer;					/* 타이머 객체 변수 */
+
+		let earth = new Planet(imgGround, 10);
+		let ball = new Ball(0.5);
+		let cannon = new Cannon(0, 0);
+		let target = new Target(imgTarget, 450, 60, 30, 200);
+
+
+		/* 초기화를 담당하는 함수 */
+		function init() {
+			clearInterval(timer);
+			cannon.위치지정(10, 250);
+			cannon.장전(ball);
+			draw();
+
+		}
+		/* 사용자가 발사 버튼을 누르면 호출된다. */
+		function start() {
+			tryCnt++;
+			init();
+			/* 사용자가 입력한 공의 초기속도 */
+			var velocity = Number(document.getElementById("velocity").value);
+			/* 사용자가 입력한 공의 초기각도 */
+			var angle = Number(document.getElementById("angle").value);
+			cannon.발사(velocity, angle);
+			// 초당 10회
+			ball.그리기간격(calculate, 100);
+			timer = setInterval(calculate, 100);
+
+		}
+		/* 공의 현재 속도와 위치를 업데이트한다. */
+		function calculate() {
+			ball.시간경과();
+			if (ball.맞추었니(target)) {
+				score++;
+				document.getElementById("score").innerHTML = tryCnt + "번 쏘아 점수=" + score + "점 획득";
+				clearInterval(timer);
+
+
+			}
+			/* 공이 목표물에 맞았으면
+			if ((ballX >= 450) && (ballX <= 480) && (ballY >= 60) && (ballY <= 210)) {
+				//
+			}
+			 공이 경계를 벗어났으면
+			if (ballY >= 300) {
+				clearInterval(timer);
+			} 
+			*/
+			draw();
+		}
+		/* 전체 화면을 그리는 함수 */
+		function draw() {
+			var context = 화면계.getContext('2d');
+			context.clearRect(0, 0, 화면계.getAttribute(width), 화면계.getAttribute(height));	/* 화면을 지운다. */
+			earth.땅그리기(context, 화면계.getAttribute(height));
+			target.draw(context);
+			ball.drawBall(context);
+		}
+
+	</script>
+</body>
+
+</html>
